@@ -23,14 +23,14 @@ public class MessageControllerTests
     }
 
     [Test]
-    public async Task EmptyReturns204OnSuccess()
+    public async Task EmptyReturns201OnSuccess()
     {
         using var httpClient = _factory.CreateClient();
 
         var message = new Message(Guid.NewGuid(), "foo");
         var response = await httpClient.PostAsJsonAsync("/message/empty", message);
 
-        response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+        response.StatusCode.ShouldBe(HttpStatusCode.Created);
     }
 
     [Test]
